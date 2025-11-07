@@ -1,0 +1,41 @@
+{% load static %}
+{% extends "user/base_generic.html" %}
+{% block title %}Создать заявку{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h2>Создать заявку</h2>
+
+    {% if messages %}
+      {% for m in messages %}
+      <div class="alert alert-{{ m.tags }}">{{ m }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% if request_form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ request_form.non_field_errors }}
+      </div>
+      {% endif %}
+
+      {% for field in request_form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<span class="text-danger">*</span>{% endif %}</label>
+        {{ field }}
+        {% if field.errors %}
+        <div class="invalid-feedback d-block">
+          {{ field.errors|striptags }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+
+      <button type="submit" class="btn btn-primary">Отправить</button>
+      <a href="{% url 'profile' %}" class="btn btn-secondary">Назад</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
