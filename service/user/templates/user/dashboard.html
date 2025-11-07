@@ -31,8 +31,6 @@
     </section>
 
     <section>
-      <h3>Управление категориями</h3>
-      <a href="{% url 'add_category' %}">Добавить категорию</a>
       <ul>
         {% for c in categories %}
           <li>{{ c.name }} <a href="{% url 'delete_category' c.id %}" onclick="return confirm('Удалить категорию и все её заявки?');">Удалить</a></li>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import RegistrationForm, LoginForm, RequestForm
 from .models import Request
 
@@ -13,12 +13,12 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
-            user.first_name = form.cleaned_data['full_name']  # ФИО можно сохранять в first_name или отдельном поле
+            user.first_name = form.cleaned_data['full_name']
             user.save()
             return redirect('login')
     else:
         form = RegistrationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'user/register.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def user_login(request):
             return redirect('profile')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'user/user_login.html', {'form': form})
 
 @login_required
 def user_logout(request):
@@ -39,7 +39,7 @@ def user_logout(request):
 @login_required
 def profile(request):
     user_requests = request.user.requests.all()
-    return render(request, 'profile.html', {'requests': user_requests})
+    return render(request, 'user/dashboard.html', {'requests': user_requests})
 
 @login_required
 def create_request(request):
@@ -52,7 +52,7 @@ def create_request(request):
             return redirect('profile')
     else:
         form = RequestForm()
-    return render(request, 'create_request.html', {'form': form})
+    return render(request, 'user/create_request.html', {'form': form})
 
 @login_required
 def delete_request(request, pk):
@@ -60,4 +60,8 @@ def delete_request(request, pk):
     if request.method == 'POST':
         req.delete()
         return redirect('profile')
-    return render(request, 'delete_request.html', {'request_obj': req})
+    return render(request, 'user/delete_request.html', {'request_obj': req})
+
+
+def staff_check(user):
+    return user.is_authenticated and (user.is_staff or user.is_superuser)

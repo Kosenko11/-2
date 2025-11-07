@@ -1,37 +1,11 @@
-{% extends 'user/base_generic.html' %}
-{% block title %}Главная — Дизайн-студия{% endblock %}
+{% extends "user/base_generic.html" %}
 {% block content %}
-  <section>
-    <h2>Добро пожаловать</h2>
-    {% if not user.is_authenticated %}
-      <p>Пожалуйста, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'signup' %}">зарегистрируйтесь</a>.</p>
-    {% else %}
-      <p>Здравствуйте, {{ user.get_full_name|default:user.username }}!</p>
-    {% endif %}
-  </section>
-
-  <section>
-    <h3>Выполненные проекты</h3>
-    {% if last_done_requests %}
-      <div class="projects">
-        {% for r in last_done_requests %}
-          <article class="project">
-            <time datetime="{{ r.created_at|date:'c' }}">{{ r.created_at|date:"d.m.Y H:i" }}</time>
-            <h4>{{ r.title }}</h4>
-            <p class="category">{{ r.category.name }}</p>
-            {% if r.photo %}
-              <img src="{{ r.photo.url }}" alt="{{ r.title }}" style="max-width:200px;">
-            {% endif %}
-          </article>
-        {% endfor %}
-      </div>
-    {% else %}
-      <p>Пока нет выполненных проектов.</p>
-    {% endif %}
-  </section>
-
-  <aside>
-    <h3>Заявки в работе</h3>
-    <p class="counter">{{ in_progress_count }}</p>
-  </aside>
+  <h1>Добро пожаловать</h1>
+  {% if user.is_authenticated %}
+    <p>Привет, {{ user.username }}! Можете создать заявку на дизайн интерьера.</p>
+    <p><a class="btn" href="{% url 'create_request' %}">Создать заявку</a></p>
+  {% else %}
+    <p>Пожалуйста, войдите или зарегистрируйтесь, чтобы создавать заявки.</p>
+    <p><a class="btn" href="{% url 'register' %}">Регистрация</a> <a class="btn" href="{% url 'login' %}">Войти</a></p>
+  {% endif %}
 {% endblock %}

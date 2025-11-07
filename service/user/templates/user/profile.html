@@ -1,52 +1,24 @@
-{% load static %}
 {% extends "user/base_generic.html" %}
-{% block title %}Профиль{% endblock %}
-
 {% block content %}
-<div class="row">
-  <div class="col-md-8">
-    <h2>Личный кабинет</h2>
+  <h2>Профиль</h2>
+  <p>Имя: {{ user.username }}</p>
+  <p>Email: {{ user.email }}</p>
 
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">{{ request.user.get_full_name|default:'Пользователь' }}</h5>
-        <p class="card-text"><strong>Логин</strong>: {{ request.user.username }}</p>
-        <p class="card-text"><strong>Email</strong>: {{ request.user.email|default:"Не указан" }}</p>
-
-        <a href="{% url 'create_request' %}" class="btn btn-primary">Создать заявку</a>
-        <a href="{% url 'user_requests' %}" class="btn btn-outline-secondary">Мои заявки</a>
-      </div>
-    </div>
-
-    <h4>Настройки</h4>
-    <!-- Пример формы изменения профиля если есть profile_form -->
-    {% if profile_form %}
-    <form method="post" novalidate>
-      {% csrf_token %}
-      {% for field in profile_form %}
-      <div class="form-group">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% if field.errors %}
-        <div class="invalid-feedback d-block">
-          {{ field.errors|striptags }}
-        </div>
-        {% endif %}
-      </div>
+  <h3>Мои заявки</h3>
+  {% if requests %}
+    <ul>
+      {% for r in requests %}
+        <li>
+          <strong>{{ r.title }}</strong> — {{ r.created_at|date:"Y-m-d H:i" }}
+          <p>{{ r.description }}</p>
+          <form action="{% url 'delete_request' r.pk %}" method="post" style="display:inline">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Удалить заявку?')">Удалить</button>
+          </form>
+        </li>
       {% endfor %}
-      <button class="btn btn-success" type="submit">Сохранить</button>
-    </form>
-    {% endif %}
-  </div>
-
-  <aside class="col-md-4">
-    <div class="card">
-      <div class="card-body">
-        <p>Дата регистрации: {{ request.user.date_joined|date:"d.m.Y H:i" }}</p>
-        <p>Роли: {% if request.user.is_staff %}Персонал{% else %}Пользователь{% endif %}</p>
-        <a href="{% url 'logout_confirm' %}" class="btn btn-outline-danger btn-block">Выйти</a>
-      </div>
-    </div>
-  </aside>
-</div>
+    </ul>
+  {% else %}
+    <p>Заявок нет.</p>
+  {% endif %}
 {% endblock %}
