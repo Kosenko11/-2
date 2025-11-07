@@ -14,6 +14,7 @@
     button { padding:8px 12px; }
     .messages { list-style:none; padding:0; }
     .messages li { margin-bottom:8px; padding:8px; border-radius:4px; background:#ffe; }
+
   </style>
 </head>
 <body>
@@ -23,6 +24,7 @@
       {% if user.is_authenticated %}
         <span>Привет, {{ user.username }}</span>
         <a href="{% url 'logout' %}">Выйти</a>
+        <a href="{% url 'dashboard' %}">Личный кабинет</a>
       {% else %}
         <a href="{% url 'login' %}">Войти</a>
         <a href="{% url 'register' %}">Регистрация</a>

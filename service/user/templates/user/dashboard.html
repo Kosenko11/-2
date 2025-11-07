@@ -1,45 +1,11 @@
-{% extends 'user/base_generic.html' %}
+{% extends "user/base_generic.html" %}
 {% block title %}Личный кабинет{% endblock %}
 {% block content %}
   <h2>Личный кабинет</h2>
+  <p>Привет, {{ user.username }}!</p>
 
-  {% if user.is_staff %}
-    <section>
-      <h3>Управление заявками</h3>
-      <table>
-        <thead><tr><th>Время</th><th>Название</th><th>Автор</th><th>Категория</th><th>Статус</th><th>Действия</th></tr></thead>
-        <tbody>
-          {% for req in all_requests %}
-            <tr>
-              <td>{{ req.created_at|date:"d.m.Y H:i" }}</td>
-              <td>{{ req.title }}</td>
-              <td>{{ req.author.username }}</td>
-              <td>{{ req.category.name }}</td>
-              <td>{{ req.get_status_display }}</td>
-              <td>
-                {% if req.status != 'in_progress' %}
-                  <a href="{% url 'change_status' req.id 'in_progress' %}">Принять в работу</a>
-                {% endif %}
-                {% if req.status != 'done' %}
-                  <a href="{% url 'change_status' req.id 'done' %}">Выполнено</a>
-                {% endif %}
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <ul>
-        {% for c in categories %}
-          <li>{{ c.name }} <a href="{% url 'delete_category' c.id %}" onclick="return confirm('Удалить категорию и все её заявки?');">Удалить</a></li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% else %}
-    <p>Здесь вы можете просматривать и управлять своими заявками.</p>
-    <a href="{% url 'my_requests' %}">Мои заявки</a>
-    <a href="{% url 'create_request' %}">Создать заявку</a>
-  {% endif %}
+  <div class="dashboard-actions">
+    <a class="action" href="{% url 'create_request' %}">Создать заявку</a>
+    <a class="action" href="{% url 'request_list' %}">Мои заявки</a>
+  </div>
 {% endblock %}

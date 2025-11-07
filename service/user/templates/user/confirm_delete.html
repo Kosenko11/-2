@@ -1,12 +1,11 @@
-{% extends 'user/base_generic.html' %}
-{% block title %}Подтвердите удаление{% endblock %}
+{% extends "user/base_generic.html" %}
+{% block title %}Подтвердить удаление{% endblock %}
 {% block content %}
-  <h2>Подтверждение удаления</h2>
-  <p>Вы уверены, что хотите удалить заявку "{{ request_obj.title }}" от {{ request_obj.created_at|date:"d.m.Y H:i" }}?</p>
-
+  <h2>Подтвердить удаление</h2>
+  <p>Вы действительно хотите удалить заявку: <strong>{{ request_obj.title }}</strong>?</p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit" name="confirm" value="yes">Да, удалить</button>
-    <a href="{% url 'my_requests' %}">Отмена</a>
+    <button class="btn btn-danger" type="submit">Да, удалить</button>
+    <a class="btn btn-ghost" href="{% url 'request_list' %}">Отмена</a>
   </form>
 {% endblock %}

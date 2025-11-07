@@ -6,5 +6,9 @@ urlpatterns = [
     path("register/", views.register_view, name="register"),
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/create/', views.create_request, name='create_request'),
+    path('dashboard/requests/', views.request_list, name='request_list'),
+    path('dashboard/requests/<int:pk>/delete/', views.delete_request, name='delete_request'),
 ]
 

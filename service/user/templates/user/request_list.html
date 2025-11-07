@@ -1,0 +1,26 @@
+{% extends "user/base_generic.html" %}
+{% block title %}Мои заявки{% endblock %}
+{% block content %}
+  <h2>Мои заявки</h2>
+  {% if requests %}
+    <ul class="request-list">
+      {% for r in requests %}
+        <li class="request-item">
+          <div class="meta">
+            <strong>{{ r.title }}</strong>
+            <span class="date">{{ r.created_at|date:"d.m.Y H:i" }}</span>
+            <span class="status">{{ r.get_status_display }}</span>
+          </div>
+          <p>{{ r.description|linebreaksbr }}</p>
+          <form method="post" action="{% url 'delete_request' r.pk %}" onsubmit="return confirm('Удалить заявку?');">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Удалить</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>У вас пока нет заявок. <a href="{% url 'create_request' %}">Создать первую</a>.</p>
+  {% endif %}
+  <p><a href="{% url 'dashboard' %}">← Назад в кабинет</a></p>
+{% endblock %}
