@@ -2,16 +2,26 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{% block title %}Дизайн-студия{% endblock %}</title>
+  <title>Сайт</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body { font-family: Arial, sans-serif; background:#f5f5f5; color:#222; margin:0; }
+    header { background:#333; color:#fff; padding:10px 20px; }
+    span { margin-right: 12px; }
+    nav a { color:#fff; margin-right:12px; text-decoration:none; }
+    main { max-width:900px; margin:20px auto; padding:20px; background:#fff; box-shadow:0 1px 4px rgba(0,0,0,0.1); }
+    button { padding:8px 12px; }
+    .messages { list-style:none; padding:0; }
+    .messages li { margin-bottom:8px; padding:8px; border-radius:4px; background:#ffe; }
+  </style>
 </head>
 <body>
   <header>
-    <h1><a href="{% url 'index' %}">Дизайн-студия</a></h1>
     <nav>
+      <a href="{% url 'index' %}">Главная</a>
       {% if user.is_authenticated %}
-        <a href="{% url 'dashboard' %}">Личный кабинет</a>
-        <a href="{% url 'create_request' %}">Создать заявку</a>
+        <span>Привет, {{ user.username }}</span>
         <a href="{% url 'logout' %}">Выйти</a>
       {% else %}
         <a href="{% url 'login' %}">Войти</a>
@@ -23,16 +33,15 @@
   <main>
     {% if messages %}
       <ul class="messages">
-        {% for msg in messages %}
-          <li class="{{ msg.tags }}">{{ msg }}</li>
+        {% for m in messages %}
+          <li class="{{ m.tags }}">{{ m }}</li>
         {% endfor %}
       </ul>
     {% endif %}
     {% block content %}{% endblock %}
   </main>
 
-  <footer>
-    <small>© Дизайн-студия</small>
-  </footer>
+  <footer>© Дизайн-студия</footer>
 </body>
 </html>
+

@@ -1,67 +1,37 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, user_passes_test
-from .forms import RegistrationForm, LoginForm, RequestForm
-from .models import Request
+from django.contrib import messages
+from .forms import RegisterForm
 
 def index(request):
-    return render(request, 'user/index.html')
+    return render(request, "user/index.html")
 
-def register(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+def register_view(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.first_name = form.cleaned_data['full_name']
-            user.save()
-            return redirect('login')
-    else:
-        form = RegistrationForm()
-    return render(request, 'user/register.html', {'form': form})
-
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
+            user = form.save()
             login(request, user)
-            return redirect('profile')
+            return redirect("index")
+        else:
+            messages.error(request, "Ошибка регистрации. Проверьте данные.")
     else:
-        form = LoginForm()
-    return render(request, 'user/user_login.html', {'form': form})
+        form = RegisterForm()
+    return render(request, "user/register.html", {"form": form})
 
-@login_required
-def user_logout(request):
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("index")
+        else:
+            messages.error(request, "Неверный логин или пароль")
+    return render(request, "user/user_login.html")
+
+def logout_view(request):
     logout(request)
-    return redirect('index')
+    return redirect("index")
 
-@login_required
-def profile(request):
-    user_requests = request.user.requests.all()
-    return render(request, 'user/dashboard.html', {'requests': user_requests})
-
-@login_required
-def create_request(request):
-    if request.method == 'POST':
-        form = RequestForm(request.POST)
-        if form.is_valid():
-            req = form.save(commit=False)
-            req.user = request.user
-            req.save()
-            return redirect('profile')
-    else:
-        form = RequestForm()
-    return render(request, 'user/create_request.html', {'form': form})
-
-@login_required
-def delete_request(request, pk):
-    req = get_object_or_404(Request, pk=pk, user=request.user)
-    if request.method == 'POST':
-        req.delete()
-        return redirect('profile')
-    return render(request, 'user/delete_request.html', {'request_obj': req})
-
-
-def staff_check(user):
-    return user.is_authenticated and (user.is_staff or user.is_superuser)

@@ -1,11 +1,10 @@
 {% extends "user/base_generic.html" %}
 {% block content %}
-  <h1>Добро пожаловать</h1>
+  <h1>Добро пожаловать на сайт</h1>
   {% if user.is_authenticated %}
-    <p>Привет, {{ user.username }}! Можете создать заявку на дизайн интерьера.</p>
-    <p><a class="btn" href="{% url 'create_request' %}">Создать заявку</a></p>
+    <p>Вы вошли как {{ user.username }}.</p>
   {% else %}
-    <p>Пожалуйста, войдите или зарегистрируйтесь, чтобы создавать заявки.</p>
-    <p><a class="btn" href="{% url 'register' %}">Регистрация</a> <a class="btn" href="{% url 'login' %}">Войти</a></p>
+    <p>Пожалуйста, войдите или зарегистрируйтесь, чтобы получить больше возможностей.</p>
   {% endif %}
 {% endblock %}
+
