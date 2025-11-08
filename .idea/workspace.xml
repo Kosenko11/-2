@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5575d626-dce5-41c2-88f7-07842d716335" name="Changes" comment="Начало реализации функционала гостя, пользователя">
-      <change afterPath="$PROJECT_DIR$/service/user/templates/user/add_category.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/templates/user/admin_dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/templates/user/change_status.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/user/templates/user/delete_category.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/service/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/service/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/templates/user/create_request.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/create_request.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="5575d626-dce5-41c2-88f7-07842d716335" name="Changes" comment="Заявка от пользователя" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +61,7 @@
       <updated>1762411612535</updated>
       <workItem from="1762411614125" duration="692000" />
       <workItem from="1762478909445" duration="7929000" />
-      <workItem from="1762564524808" duration="5393000" />
+      <workItem from="1762564524808" duration="5720000" />
     </task>
     <task id="LOCAL-00001" summary="Начало реализации функционала гостя, пользователя">
       <option name="closed" value="true" />
@@ -85,7 +71,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762481393152</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Заявка от пользователя">
+      <option name="closed" value="true" />
+      <created>1762570245327</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762570245327</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,6 +87,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Начало реализации функционала гостя, пользователя" />
-    <option name="LAST_COMMIT_MESSAGE" value="Начало реализации функционала гостя, пользователя" />
+    <MESSAGE value="Заявка от пользователя" />
+    <option name="LAST_COMMIT_MESSAGE" value="Заявка от пользователя" />
   </component>
 </project>
