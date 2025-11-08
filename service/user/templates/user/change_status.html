@@ -1,0 +1,6 @@
+{% extends 'user/base_generic.html' %}
+{% block content %}
+<h1>Изменить статус заявки: {{ request_obj.title }}</h1>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Сохранить</button></form>
+<p><a href="{% url 'admin_dashboard' %}">Назад</a></p>
+{% endblock %}

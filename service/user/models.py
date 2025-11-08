@@ -20,6 +20,8 @@ class DesignRequest(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='design_requests')
     title = models.CharField(max_length=200)
     description = models.TextField()
+    category = models.CharField(max_length=100, default='')
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
 

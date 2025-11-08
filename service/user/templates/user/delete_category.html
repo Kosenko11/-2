@@ -1,0 +1,9 @@
+{% extends 'user/base_generic.html' %}
+{% block content %}
+<h1>Вы уверены, что хотите удалить категорию "{{ category.name }}"?</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Да, удалить</button>
+  <p><a href="{% url 'admin_dashboard' %}">Назад</a></p>
+</form>
+{% endblock %}

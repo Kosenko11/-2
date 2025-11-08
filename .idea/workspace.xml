@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5575d626-dce5-41c2-88f7-07842d716335" name="Changes" comment="Начало реализации функционала гостя, пользователя">
+      <change afterPath="$PROJECT_DIR$/service/user/templates/user/add_category.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/user/templates/user/admin_dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/user/templates/user/change_status.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/user/templates/user/delete_category.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/service/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/service/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/service/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/templates/user/base_generic.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/base_generic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/user/templates/user/create_request.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/create_request.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/templates/user/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/templates/user/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/templates/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/templates/user/user_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/user_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/templates/user/user_logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/templates/user/user_logout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/views.py" afterDir="false" />
     </list>
@@ -43,19 +44,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -74,6 +75,7 @@
       <updated>1762411612535</updated>
       <workItem from="1762411614125" duration="692000" />
       <workItem from="1762478909445" duration="7929000" />
+      <workItem from="1762564524808" duration="5393000" />
     </task>
     <task id="LOCAL-00001" summary="Начало реализации функционала гостя, пользователя">
       <option name="closed" value="true" />
